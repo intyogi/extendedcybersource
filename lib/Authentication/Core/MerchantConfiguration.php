@@ -204,6 +204,7 @@ class MerchantConfiguration
      * @var LogConfiguration
      */
     protected $logConfig;
+    protected $tempFolderPath;
 
     /**
      * Constructor

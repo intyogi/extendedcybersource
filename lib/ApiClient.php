@@ -88,6 +88,7 @@ class ApiClient
      * @var AcceptHeader
      */
     public $acceptHeader = null;
+    public $merchantConfig;
 
     /**
      * Constructor of the class
@@ -237,7 +238,7 @@ class ApiClient
         } elseif ((is_object($postData) or is_array($postData)) and !in_array('Content-Type: multipart/form-data', $headers, true)) { // json model
             $postData = json_encode(\CyberSource\ObjectSerializer::sanitizeForSerialization($postData));
         }
-        $resourcePath= utf8_encode($resourcePath);
+         $resourcePath= mb_convert_encoding($resourcePath, 'UTF-8', mb_detect_encoding($resourcePath));
 
         if($this->merchantConfig->getAuthenticationType() != GlobalParameter::MUTUAL_AUTH)
         {
